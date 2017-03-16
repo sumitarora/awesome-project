@@ -7,7 +7,7 @@ export class StoreService {
   public appointements = [];
 
   constructor() {
-    const numReasons = parseInt((Math.random() * 10).toString(), 10);
+    const numReasons = parseInt((Math.random() * 10).toString(), 10) + 1;
     for (let i = 0; i < numReasons; i++) {
       this.reasons.push({
         id: i,

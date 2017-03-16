@@ -9,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  private loginError: Boolean = false;
+  public loginError: Boolean = false;
 
   constructor(
     private _loginService: LoginService,
@@ -26,7 +26,6 @@ export class LoginComponent implements OnInit {
         this._router.navigateByUrl('/appointements');
       }).catch((error) => {
         this.loginError = true;
-        console.log(error);
       });
   }
 
