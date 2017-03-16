@@ -43,7 +43,6 @@ class AppointmentPage extends Page {
  	}
 
  	selectAppointmentReason(appReason) {
- 		this.reasonDropdown.click();
  		this.reasonDropdown.selectByVisibleText(appReason);
  	}
 
