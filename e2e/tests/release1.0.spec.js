@@ -15,12 +15,12 @@ describe('User Adds Single Appointment', function () {
         expect(AppointmentPage.getPageTitle('LunchAndLearn')).to.equal(true);
         AppointmentPage.selectBookAppointment();
         AppointmentPage.enterAppointmentName('Doctors');
-        AppointmentPage.selectAppointmentReason('Reason 3');
+        AppointmentPage.selectAppointmentReason('Reason 1');
         AppointmentPage.setAppointmentStart('05', '45');
         AppointmentPage.setAppointmentStart('07', '45');
         AppointmentPage.submitAppointment();
         expect(AppointmentPage.verifySubmitAppointmentFirst('Doctors')).to.equal(true);
-    });
+    }, 3);
 });
 
 describe('User Adds Multiple Appointments', function () {
@@ -40,7 +40,7 @@ describe('User Adds Multiple Appointments', function () {
         AppointmentPage.setAppointmentStart('11', '15');
         AppointmentPage.submitAppointment();
         expect(AppointmentPage.verifySubmitAppointmentSecond('Personal')).to.equal(true);
-    });
+    }), 3;
 });
 
 
