@@ -1,5 +1,5 @@
 import { Router } from '@angular/router';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { FormsModule } from '@angular/forms';
 import { TimepickerModule } from 'ng2-bootstrap';
@@ -40,7 +40,7 @@ describe('AppointmentComponent', () => {
     expect(router).toBeDefined();
 
     spyOn(storeService, 'addAppointement').and.callThrough();
-    spyOn(router, 'navigateByUrl').and.callThrough();
+    spyOn(router, 'navigateByUrl');
 
     const appointement = {
       name: 'Name',
@@ -53,4 +53,33 @@ describe('AppointmentComponent', () => {
     expect(router.navigateByUrl).toHaveBeenCalled();
     expect(storeService.appointements.length).toBe(1);
   });
+
+  it('should show error if endTime is less than startTime', () => {
+    expect(component.showError).toBeUndefined();
+
+    const appointement = {
+      name: 'Name',
+      startTime: new Date(2017, 1, 1, 3, 0, 0, 0),
+      endTime: new Date(2017, 1, 1, 1, 0, 0, 0),
+      reason: 1
+    };
+    component.addAppointement(appointement);
+
+    expect(component.showError).toBe('Start time should be more than end time');
+  });
+
+  it('should show error if duration is more than 2 hours', () => {
+    expect(component.showError).toBeUndefined();
+
+    const appointement = {
+      name: 'Name',
+      startTime: new Date(2017, 1, 1, 1, 0, 0, 0),
+      endTime: new Date(2017, 1, 1, 4, 0, 0, 0),
+      reason: 1
+    };
+    component.addAppointement(appointement);
+
+    expect(component.showError).toBe('Maximum duration can only be 2 hours');
+  });
+
 });

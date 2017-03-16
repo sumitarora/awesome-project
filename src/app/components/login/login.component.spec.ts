@@ -1,5 +1,5 @@
 import { Router } from '@angular/router';
-import { tick, async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { LoginComponent } from './login.component';
@@ -33,7 +33,7 @@ describe('LoginComponent', () => {
     expect(router).toBeDefined();
   });
 
-  it('should create LoginComponent correctly', async() => {
+  it('should create LoginComponent correctly', fakeAsync(() => {
     const loginService: LoginService = TestBed.get(LoginService);
     expect(loginService).toBeDefined();
 
@@ -41,7 +41,7 @@ describe('LoginComponent', () => {
     expect(router).toBeDefined();
 
     spyOn(loginService, 'login').and.callThrough();
-    spyOn(router, 'navigateByUrl').and.callThrough();
+    spyOn(router, 'navigateByUrl');
 
     component.login('email@email.com', 'password');
     expect(loginService.login).toHaveBeenCalledWith('email@email.com', 'password');
@@ -49,9 +49,9 @@ describe('LoginComponent', () => {
     tick();
 
     expect(router.navigateByUrl).toHaveBeenCalledWith('/appointements');
-  });
+  }));
 
-  it('should show error on invalid login', async() => {
+  it('should show error on invalid login', fakeAsync(() => {
     expect(component.loginError).toBeFalsy();
     const loginService: LoginService = TestBed.get(LoginService);
     expect(loginService).toBeDefined();
@@ -64,5 +64,5 @@ describe('LoginComponent', () => {
     tick();
 
     expect(component.loginError).toBeTruthy();
-  });
+  }));
 });
