@@ -8,6 +8,9 @@
       <h3 class="panel-title"><strong>Book Appointment</strong></h3>
     </div>
     <div class="panel-body">
+      <div class="alert alert-danger" *ngIf="showError">
+        {{showError}}
+      </div>
       <form role="form" (submit)="addAppointement(appointement)">
         <div class="form-group">
           <label for="name">Name</label>
