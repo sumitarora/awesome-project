@@ -44,8 +44,8 @@ describe('AppointmentComponent', () => {
 
     const appointement = {
       name: 'Name',
-      startDate: new Date(),
-      endDate: new Date(),
+      startTime: new Date(),
+      endTime: new Date(),
       reason: 1
     };
     component.addAppointement(appointement);
