@@ -5,6 +5,7 @@ class Page {
 	}
 	open(path) {
 		browser.url('/');
+		
 	}
 }
 module.exports = Page;
