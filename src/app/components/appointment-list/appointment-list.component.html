@@ -1,0 +1,18 @@
+<h4>Appointements</h4>
+<a href="#/appointement/book" class="btn btn-primary pull-right muted">Book Apppointement</a>
+<br/>
+<br/>
+<table class="table table-bordered">
+  <tr>
+    <th>Name</th>
+    <th>Start Time</th>
+    <th>End Time</th>
+    <th>Reason</th>
+  </tr>
+  <tr *ngFor="let appointment of _storeService.appointements">
+    <td>{{appointment.name}}</td>
+    <td>{{appointment.startTime}}</td>
+    <td>{{appointment.endTime}}</td>
+    <td>{{appointment.reason}}</td>
+  </tr>  
+</table>
