@@ -7,9 +7,9 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './appointment.component.html',
   styleUrls: ['./appointment.component.css']
 })
-export class AppointmentComponent implements OnInit {
+export class AppointmentComponent {
 
-  private appointement = {
+  public appointement = {
     name: '',
     reason: '',
     startTime: new Date(),
@@ -20,9 +20,6 @@ export class AppointmentComponent implements OnInit {
     private _storeService: StoreService,
     private _router: Router
   ) { }
-
-  ngOnInit() {
-  }
 
   addAppointement(appointement: any) {
     const app = Object.assign({}, appointement);

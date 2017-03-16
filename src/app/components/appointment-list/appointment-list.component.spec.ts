@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AppointmentListComponent } from './appointment-list.component';
+import { StoreService } from '../../services';
 
 describe('AppointmentListComponent', () => {
   let component: AppointmentListComponent;
@@ -8,7 +9,8 @@ describe('AppointmentListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AppointmentListComponent ]
+      declarations: [ AppointmentListComponent ],
+      providers: [ StoreService ],
     })
     .compileComponents();
   }));
@@ -19,7 +21,9 @@ describe('AppointmentListComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create AppointmentListComponent correctly', () => {
+    const storeService: StoreService = TestBed.get(StoreService);
+    expect(storeService).toBeDefined();
     expect(component).toBeTruthy();
   });
 });
