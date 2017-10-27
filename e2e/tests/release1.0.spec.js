@@ -9,6 +9,13 @@ describe('User Can not successfully Login', function () {
     });
 });   
 
+describe('User successfully Login', function () {
+    it('should allow an existing customer to Add and Submit an Appointment', function () {
+        LoginPage.login('email@email.com', 'password');
+        expect(AppointmentPage.getPageTitle('LunchAndLearn')).to.equal(true);
+    });
+});   
+
 describe('User Adds Single Appointment', function () {
     it('should allow an existing customer to Add and Submit an Appointment', function () {
         LoginPage.login('email@email.com', 'password');
@@ -16,11 +23,11 @@ describe('User Adds Single Appointment', function () {
         AppointmentPage.selectBookAppointment();
         AppointmentPage.enterAppointmentName('Doctors');
         AppointmentPage.selectAppointmentReason('Reason 1');
-        AppointmentPage.setAppointmentStart('05', '45');
-        AppointmentPage.setAppointmentStart('07', '45');
+        AppointmentPage.setAppointmentStart('05', '45', 'AM');
+        AppointmentPage.setAppointmentEnd('07', '45', 'AM');
         AppointmentPage.submitAppointment();
         expect(AppointmentPage.verifySubmitAppointmentFirst('Doctors')).to.equal(true);
-    }, 3);
+    });
 });
 
 describe('User Adds Multiple Appointments', function () {
@@ -29,18 +36,18 @@ describe('User Adds Multiple Appointments', function () {
         AppointmentPage.selectBookAppointment();
         AppointmentPage.enterAppointmentName('Doctors');
         AppointmentPage.selectAppointmentReason('Reason 3');
-        AppointmentPage.setAppointmentStart('05', '45');
-        AppointmentPage.setAppointmentStart('07', '45');
+        AppointmentPage.setAppointmentStart('05', '45', 'AM');
+        AppointmentPage.setAppointmentEnd('07', '45', 'AM');
         AppointmentPage.submitAppointment();
         expect(AppointmentPage.verifySubmitAppointmentFirst('Doctors')).to.equal(true);
         AppointmentPage.selectBookAppointment();
         AppointmentPage.enterAppointmentName('Personal');
         AppointmentPage.selectAppointmentReason('Reason 4');
-        AppointmentPage.setAppointmentStart('09', '45');
-        AppointmentPage.setAppointmentStart('11', '15');
+        AppointmentPage.setAppointmentStart('09', '45', 'AM');
+        AppointmentPage.setAppointmentEnd('11', '15', 'AM');
         AppointmentPage.submitAppointment();
         expect(AppointmentPage.verifySubmitAppointmentSecond('Personal')).to.equal(true);
-    }), 3;
+    });
 });
 
 
